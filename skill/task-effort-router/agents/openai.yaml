@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task Effort Router"
+  short_description: "Route task effort, modes, and verification"
+  default_prompt: "Use $task-effort-router to choose the lightest reliable execution mode for this task."
