@@ -3,7 +3,7 @@ name: task-effort-router
 description: Classify task effort before execution and choose the lightest reliable reasoning level, workflow mode, context scope, and verification. Use at the start of coding, debugging, build, install, review, local-tool, research, document, or other non-trivial work; especially when a task may be ambiguous, long-running, high-risk, or prone to unnecessary planning, broad scans, extra files, dependencies, abstractions, or token use.
 ---
 
-<!-- provenance: ter-diiiiiiylan-2026-07-15 | canonical-source: https://github.com/diiiiiiylan/task-effort-router | keep with unmodified copies -->
+<!-- provenance: ter-diiiiiiylan-2026-07-15 | canonical-source: https://github.com/diiiiiiylan/task-effort-router | keep with unmodified copies | author-authorized local enhancement 2026-08-22: domain skill/plugin routing + auto-intake -->
 
 # Task Effort Router
 
@@ -63,6 +63,113 @@ Use only when evidence shows cross-module or cross-system dependencies, unclear 
 - Use agents only when independent work exists and delegation is allowed.
 
 High risk increases verification strength; it does not authorize unrelated scope.
+
+## Route skills and plugins by domain
+
+After classifying effort, choose the smallest skill/plugin set by domain. Load only what the domain needs; do not bulk-load unrelated capabilities.
+
+- **Frontend tasks** → use frontend/UI/UX skills below.
+- **Backend tasks** → use backend/API skills below.
+- **Ponytail-level light tasks** (one-line change, pure copy, simple Q&A, tiny fix, YAGNI) → **load no skill or plugin at all**; finish at maximum speed without wasting tokens. Load ponytail-review/ponytail-audit only when the user explicitly asks for review/audit.
+- **Other domains** → minimal set from the complete category map below.
+- When the domain is unclear, read the task and existing code first; only ask when it changes direction.
+
+### Complete skill/plugin category map
+
+**Frontend / UI / UX**
+- Skills: animation-vocabulary, apple-design, claude-design, design-taste-frontend, design-taste-frontend-v1, emil-design-eng, frontend-design, frontend-patterns, gpt-taste, high-end-visual-design, image-to-code, imagegen-frontend-mobile, imagegen-frontend-web, impeccable, industrial-brutalist-ui, liquid-glass-react, minimalist-ui, physically-grounded-liquid-glass, redesign-existing-projects, stitch-design-taste, ui-ux-pro-max, vercel-react-best-practices, website-local-cloner
+- Plugins: build-web-apps, sites, browser, chrome, visualize, product-design
+
+**Motion / animation**
+- Skills: find-animation-opportunities, improve-animations, review-animations, gsap-core, gsap-frameworks, gsap-hyperframes-backup-20260527, gsap-performance, gsap-plugins, gsap-react, gsap-scrolltrigger, gsap-timeline, gsap-utils, pixel2motion
+- Plugins: hyperframes, remotion
+
+**Figma / design collaboration**
+- Skills: figma, figma-use, figma-implement-design, figma-code-connect-components, figma-create-design-system-rules, figma-generate-design, figma-generate-library
+- Plugins: figma
+
+**Backend / API**
+- Skills: aspnet-core, cli-creator, openai-docs, chatgpt-apps
+- Plugins: supabase, cloudflare, vercel, github, deepseek-harness
+
+**Full-stack / methodology / workflow**
+- Skills: finish-verify-polish, full-output-enforcement, migrate-to-codex, project-skill-router, requirement-completer, task-effort-router, user-thinking, work-with-user, karpathy-agentic-engineering, karpathy-methodology, karpathy-minimalism, karpathy-understanding-first, karpathy-vibe-to-agentic, karpathy-supply-chain-hygiene
+- Plugins: superpowers
+
+**AI / ML / agents / research**
+- Skills: karpathy-autoresearch, karpathy-llm-wiki, karpathy-idea-files, karpathy-education-first, karpathy-output-evolution, karpathy-practice-environments, karpathy-llm-simulator, karpathy-system-prompt-learning, karpathy-meta-reflection, jupyter-notebook, openai-docs, chatgpt-apps
+- Plugins: hugging-face, openai-developers, deepseek-harness
+
+**Video / media / creative motion**
+- Skills: embedded-captions, faceless-explainer, general-video, hyperframes, hyperframes-animation, hyperframes-cli, hyperframes-core, hyperframes-creative, hyperframes-media, hyperframes-registry, media-use, motion-graphics, music-to-video, pr-to-video, product-launch-video, remotion-to-hyperframes, slideshow, talking-head-recut, website-to-video, transcribe, speech
+- Plugins: hyperframes, remotion, picsart, creative-production, canva, adobe (app-69312da8e4dc81919370cb86fd172b6c)
+
+**Image / brand / design systems**
+- Skills: brandkit, hatch-pet, pixel2motion
+- Plugins: creative-production, canva, adobe, picsart
+
+**Docs / office / PDF / spreadsheets / slides**
+- Skills: pdf
+- Plugins: documents, presentations, spreadsheets, pdf, latex, template-creator, openai-templates, google-drive, notion
+
+**Data / analytics / visualization**
+- Skills: jupyter-notebook
+- Plugins: data-analytics, spreadsheets, visualize, build-web-data-visualization
+
+**Browser / automation / system control**
+- Skills: playwright, playwright-interactive, screenshot, windows-computer-control, windows-record-and-replay
+- Plugins: browser, chrome, computer-use
+
+**Security / reverse engineering / supply chain**
+- Skills: reverse-flow, security-best-practices, security-threat-model, karpathy-supply-chain-hygiene
+- Plugins: codex-security, github
+
+**GitHub / CI / release**
+- Skills: gh-address-comments, gh-fix-ci
+- Plugins: github, circleci, vercel, cloudflare, codex-security
+
+**Game / 3D / interactive**
+- Skills: three-webgl-game, pixel2motion
+- Plugins: game-studio
+
+**Mobile / desktop native**
+- Skills: winui-app
+- Plugins: build-ios-apps, expo
+
+**Knowledge / memory / personal efficiency**
+- Skills: codex-memory, work-with-user, bryan-johnson-perspective, karpathy-llm-wiki, karpathy-meta-reflection
+- Plugins: gmail, linear, notion, google-drive, plugin-management
+
+**Business vertical / finance / sales**
+- Plugins: finances, investment-banking, public-equity-investing, sales
+
+**Project-specific**
+- Skills: local-media-studio-ship-check, mineradio-liquid-glass-motion
+
+**Lightweight / Ponytail mode**
+- Plugins: ponytail
+- Plugin-bundled skills: ponytail, ponytail-review, ponytail-audit, ponytail-debt, ponytail-gain, ponytail-help
+- Rule: default no-skill mode; review/audit only on explicit request.
+
+Full inventory files: `C:\Users\Administrator\.agents\skills\codex-skill-domain-router\codex-skills-inventory.txt`, `codex-plugins-inventory.txt`, `codex-plugin-skills-inventory.txt`.
+
+## New skill/plugin auto-intake
+
+Every time this router runs, also check whether the current task mentions or the environment exposes a skill/plugin that is **not already recorded** in the category map or inventory files.
+
+If a new skill/plugin is detected:
+
+1. Read its source of truth first:
+   - Skill → `SKILL.md` frontmatter `description` (search `C:\Users\Administrator\.codex\skills\<name>` and `C:\Users\Administrator\.agents\skills\<name>`).
+   - Plugin → `.codex-plugin/plugin.json` or `README.md` (search `C:\Users\Administrator\.codex\plugins\cache\**`).
+2. Classify it into exactly one primary domain from the category map (frontend, backend, full-stack, AI/ML, video/media, image/brand, docs/office, data, browser/system, security, GitHub/CI, game, mobile/desktop, knowledge, business, project-specific, lightweight).
+3. Add the new name to:
+   - This router's `## Route skills and plugins by domain` map (correct category).
+   - `C:\Users\Administrator\.agents\skills\codex-skill-domain-router\SKILL.md` map.
+   - The matching inventory file under `codex-skill-domain-router` (`codex-skills-inventory.txt` or `codex-plugins-inventory.txt`).
+4. Do not load the new skill for the current task unless the task actually needs it; recording is separate from loading.
+
+This keeps the router complete: every installed/available skill and plugin stays recorded, and future tasks can route to them by domain.
 
 ## Route modes
 
