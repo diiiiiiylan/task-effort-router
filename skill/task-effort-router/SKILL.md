@@ -151,7 +151,7 @@ After classifying effort, choose the smallest skill/plugin set by domain. Load o
 - Plugin-bundled skills: ponytail, ponytail-review, ponytail-audit, ponytail-debt, ponytail-gain, ponytail-help
 - Rule: default no-skill mode; review/audit only on explicit request.
 
-Full inventory files: `C:\Users\Administrator\.agents\skills\codex-skill-domain-router\codex-skills-inventory.txt`, `codex-plugins-inventory.txt`, `codex-plugin-skills-inventory.txt`.
+Full inventory files: `%USERPROFILE%\.agents\skills\codex-skill-domain-router\codex-skills-inventory.txt`, `codex-plugins-inventory.txt`, `codex-plugin-skills-inventory.txt`.
 
 ## New skill/plugin auto-intake
 
@@ -160,12 +160,12 @@ Every time this router runs, also check whether the current task mentions or the
 If a new skill/plugin is detected:
 
 1. Read its source of truth first:
-   - Skill → `SKILL.md` frontmatter `description` (search `C:\Users\Administrator\.codex\skills\<name>` and `C:\Users\Administrator\.agents\skills\<name>`).
-   - Plugin → `.codex-plugin/plugin.json` or `README.md` (search `C:\Users\Administrator\.codex\plugins\cache\**`).
+   - Skill → `SKILL.md` frontmatter `description` (search `%USERPROFILE%\.codex\skills\<name>` and `%USERPROFILE%\.agents\skills\<name>`).
+   - Plugin → `.codex-plugin/plugin.json` or `README.md` (search `%USERPROFILE%\.codex\plugins\cache\**`).
 2. Classify it into exactly one primary domain from the category map (frontend, backend, full-stack, AI/ML, video/media, image/brand, docs/office, data, browser/system, security, GitHub/CI, game, mobile/desktop, knowledge, business, project-specific, lightweight).
 3. Add the new name to:
    - This router's `## Route skills and plugins by domain` map (correct category).
-   - `C:\Users\Administrator\.agents\skills\codex-skill-domain-router\SKILL.md` map.
+   - `%USERPROFILE%\.agents\skills\codex-skill-domain-router\SKILL.md` map.
    - The matching inventory file under `codex-skill-domain-router` (`codex-skills-inventory.txt` or `codex-plugins-inventory.txt`).
 4. Do not load the new skill for the current task unless the task actually needs it; recording is separate from loading.
 
